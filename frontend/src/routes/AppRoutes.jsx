@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import Departments from "../pages/Departments";
 import Profile from "../pages/Profile";
+import Finance from "../pages/Finance";
 import NotFound from "../pages/NotFound";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -34,6 +35,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Profile />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/finance" 
+        element={
+          <ProtectedRoute>
+            <Finance />
           </ProtectedRoute>
         } 
       />

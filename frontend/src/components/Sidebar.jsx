@@ -13,7 +13,9 @@ function Sidebar() {
         </li>
         <li>Employees</li>
         <li>HR</li>
-        <li>Finance</li>
+        <li>
+          <Link to="/finance" className="hover:text-blue-400">Finance</Link>
+        </li>
         <li>Sales</li>
         <li>AI Agents</li>
         <li>Reports</li>

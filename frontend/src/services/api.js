@@ -26,4 +26,15 @@ api.interceptors.response.use(
   }
 );
 
+export const financeApi = {
+  getExpenses: () => api.get("/finance/expenses/"),
+  createExpense: (data) => api.post("/finance/expenses/", data),
+  updateExpenseStatus: (id, status) => api.patch(`/finance/expenses/${id}/status`, { status }),
+  getInvoices: () => api.get("/finance/invoices/"),
+  createInvoice: (data) => api.post("/finance/invoices/", data),
+  updateInvoiceStatus: (id, status) => api.patch(`/finance/invoices/${id}/status`, { status }),
+  getBudgets: () => api.get("/finance/budgets/"),
+  createBudget: (data) => api.post("/finance/budgets/", data),
+};
+
 export default api;

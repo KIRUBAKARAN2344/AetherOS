@@ -13,7 +13,7 @@ function Departments() {
     fetchDepartments();
   }, []);
 
-  const fetchDepartments = () => {
+  function fetchDepartments() {
     api.get("/departments/")
       .then((res) => {
         setDepartments(res.data);
