@@ -9,28 +9,26 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await api.post("/auth/login", {
-        email,
-        password,
-      });
+  console.log("Email:", `"${email}"`);
+  console.log("Password:", `"${password}"`);
 
-      localStorage.setItem(
-        "access_token",
-        response.data.access_token
-      );
+  try {
+    const response = await api.post("/auth/login", {
+      email,
+      password,
+    });
 
-      alert("Login Successful!");
+    console.log(response.data);
 
-      navigate("/dashboard");
+    localStorage.setItem("access_token", response.data.access_token);
+    navigate("/dashboard");
 
-    } catch (error) {
-      alert(error.response?.data?.detail || "Login Failed");
-    }
-  };
-
+  } catch (error) {
+    console.log(error.response?.data);
+  }
+};
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center">
       <div className="bg-white w-[420px] rounded-2xl shadow-2xl p-8">
