@@ -2,10 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database.database import Base, engine
-from app.models.user import User
-
-from app.api.users import router as user_router
-from app.api.auth import router as auth_router
+from app.core.config import settings
+from app.api import auth, users, departments, dashboard, finance
 
 # Create FastAPI application FIRST
 app = FastAPI(
@@ -25,12 +23,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+# Database tables are now managed by Alembic
+# Base.metadata.create_all(bind=engine)
 
-# Register routers
-app.include_router(user_router)
-app.include_router(auth_router)
+# Include routers
+app.include_router(auth.router)
+app.include_router(users.router)
+app.include_router(departments.router)
+app.include_router(dashboard.router)
+app.include_router(finance.router)
 
 # Home route
 @app.get("/")
@@ -39,3 +40,7 @@ def home():
         "message": "Welcome to AetherOS 🚀",
         "database": "Connected Successfully"
     }
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
